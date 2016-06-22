@@ -25,6 +25,8 @@ Plug 'mattn/emmet-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'tpope/vim-liquid'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'cespare/vim-toml'
 
 call plug#end()
 
@@ -122,31 +124,16 @@ nnoremap <M-l> <C-W>l
 vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
 vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>
 
+" add semicolon to the end of the line
+nnoremap <leader>; A;<esc>
+
 " might as well try this out
 inoremap jk <esc>
 inoremap <esc> <nop>
 
 map <C-n> :NERDTreeToggle<CR>
 
-" Workaround for non-powerline fonts
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-" unicode symbols
-let g:airline_left_sep = '»'
+let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
-let g:airline_right_sep = '«'
 let g:airline_right_sep = ''
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = '☰'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
+
