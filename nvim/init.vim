@@ -9,6 +9,10 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'morhetz/gruvbox'
+Plug 'whatyouhide/vim-gotham'
+Plug 'nanotech/jellybeans.vim'
+Plug 'jacoborus/tender.vim'
+Plug 'mhartington/oceanic-next'
 
 Plug 'tpope/vim-surround'
 Plug 'bling/vim-airline'
@@ -22,31 +26,35 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 
-Plug 'rust-lang/rust.vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'tpope/vim-liquid'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'cespare/vim-toml'
+
+Plug 'sheerun/vim-polyglot'
+Plug 'othree/yajs.vim'
+
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'Shougo/neco-vim'
 
 call plug#end()
 
 
 "-------------------- General/Misc Settings--------------------
-syntax on
-filetype plugin indent on
-set autoread
-set laststatus=2
-set ruler
+:let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 set number
-set mouse=a
-:let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set updatetime=250
 set scrolloff=7
+set noshowmode
+set cursorline
 
 let g:bufferline_echo=0
 
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swp//
+
+set foldmethod=syntax
+set foldcolumn=2
+set foldnestmax=2
+autocmd BufEnter * normal zR
+
 
 
 "-------------------- Tab Settings --------------------
@@ -60,6 +68,9 @@ autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
 
 "-------------------- Colorscheme --------------------
+set termguicolors
+syntax on
+
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_italic=1
 let g:gruvbox_italicize_comments=1
@@ -105,10 +116,13 @@ endif
 "-------------------- Mappings --------------------
 let mapleader=','
 let g:mapleader=','
+
+nnoremap ; :
+
 nnoremap <leader>ei :edit $MYVIMRC<cr>
 nnoremap <leader>si :source $MYVIMRC<cr>
 
-nnoremap <leader>w :w!<cr>
+nnoremap <leader>w :wall!<cr>
 
 nnoremap <leader>= gg=G
 
@@ -129,11 +143,27 @@ nnoremap <leader>; A;<esc>
 
 " might as well try this out
 inoremap jk <esc>
-inoremap <esc> <nop>
+" inoremap <esc> <nop>
 
+"-------------------- Plugin Settings --------------------
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 map <C-n> :NERDTreeToggle<CR>
 
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+let g:airline#extensions#tabline#enabled = 1
 
+let g:user_emmet_install_global = 0
+let g:user_emmet_leader_key='<M-m>'
+autocmd FileType html,css,javascript.jsx,liquid EmmetInstall
+
+" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+let g:user_emmet_settings = {
+            \  'html' : {
+            \    'indent_blockelement': 1,
+            \  },
+            \}
+
+call deoplete#enable()
+
+let g:polyglot_disabled = ['javascript']
