@@ -1,11 +1,16 @@
-;;; init.el --- emacs init file
+;;;; init.el --- emacs init file
 
-; do these first to prevent flashing on startup
+;; do these first to prevent flashing on startup
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-(add-to-list 'load-path (concat user-emacs-directory "init"))
+(add-to-list 'load-path (concat user-emacs-directory "config"))
+
+;; move "custom" settings to its own file 
+(setq custom-file (concat user-emacs-directory "custom.el")
+      custom-safe-themes t)
+(load custom-file t)
 
 ;;; package.el setup
 (require 'package)
@@ -24,8 +29,9 @@
 
 (setq use-package-always-ensure t)
 
-;;; misc ui settings
-(set-frame-font "GohuFont 14")
+;;; general ui settings
+(when (find-font (font-spec :name "Gohufont"))
+  (set-frame-font "GohuFont 14"))
 
 (blink-cursor-mode -1)
 
@@ -38,8 +44,7 @@
 ; Use Shift-arrowkeys to move between windows
 (windmove-default-keybindings)
 
-(setq custom-file (concat user-emacs-directory "init/custom.el")
-      inhibit-splash-screen t
+(setq inhibit-splash-screen t
       make-backup-files nil)
 
 ;;; packages
@@ -54,10 +59,10 @@
 
 (use-package powerline
   :config
-  (powerline-evil-center-color-theme)
+  (use-package powerline-evil)
+  (powerline-default-theme)
   (setq powerline-default-separator 'wave))
 
-(use-package powerline-evil)
 
 (use-package magit)
 (use-package evil-magit)
@@ -85,13 +90,20 @@
   :config
   (which-key-mode))
 
+(use-package haskell-mode)
+
 ;;; themes
 (use-package solarized-theme :defer)
 (use-package color-theme-sanityinc-tomorrow :defer)
 (use-package dracula-theme :defer)
+(use-package gruvbox-theme :defer)
+(use-package darktooth-theme :defer)
+(use-package creamsody-theme :defer)
+(use-package doom-themes :defer)
 
-(load-theme 'dracula t)
+(load-theme 'darktooth t)
 
+(require 'platform-specific)
 (provide 'init)
 
 ;;; init.el ends here
