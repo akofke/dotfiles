@@ -92,6 +92,11 @@
 
 (use-package haskell-mode)
 
+(use-package neotree
+  :config
+  (setq neo-theme 'arrow)
+  (global-set-key [f8] 'neotree-toggle))
+
 ;;; themes
 (use-package solarized-theme :defer)
 (use-package color-theme-sanityinc-tomorrow :defer)
