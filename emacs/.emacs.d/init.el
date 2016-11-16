@@ -97,6 +97,8 @@
   (setq neo-theme 'arrow)
   (global-set-key [f8] 'neotree-toggle))
 
+(use-package web-mode)
+
 ;;; themes
 (use-package solarized-theme :defer)
 (use-package color-theme-sanityinc-tomorrow :defer)
