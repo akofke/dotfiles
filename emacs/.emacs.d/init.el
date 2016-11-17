@@ -41,11 +41,34 @@
 (show-paren-mode t)
 (global-hl-line-mode t)
 
-; Use Shift-arrowkeys to move between windows
+;; Use Shift-arrowkeys to move between windows
 (windmove-default-keybindings)
 
-(setq inhibit-splash-screen t
-      make-backup-files nil)
+;; focus the help window when I open it
+(setq help-window-select t)
+
+;;; emacs annoyances
+(setq inhibit-splash-screen t)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq create-lockfiles nil)
+
+;; follow symlinks (in order to use vc functionality). Not sure if this is
+;; what I want
+(setq vc-follow-symlinks t)
+
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+;;; general keybindings
+(defun my/open-init-file ()
+  "Open the init file"
+  (interactive)
+  (find-file user-init-file))
+(global-set-key (kbd "C-c i") 'my/open-init-file)
+
 
 ;;; packages
 
@@ -108,7 +131,7 @@
 (use-package creamsody-theme :defer)
 (use-package doom-themes :defer)
 
-(load-theme 'darktooth t)
+(load-theme 'gruvbox t)
 
 (require 'platform-specific)
 (provide 'init)
