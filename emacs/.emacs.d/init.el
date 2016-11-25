@@ -5,6 +5,9 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+;; set garbage collection threshold to 20 MB
+(setq gc-cons-threshold (* 20 1024 1024))
+
 (add-to-list 'load-path (concat user-emacs-directory "config"))
 
 ;; move "custom" settings to its own file 
@@ -39,6 +42,7 @@
 (column-number-mode t)
 (line-number-mode t)
 (show-paren-mode t)
+(setq show-paren-delay 0.0)
 (global-hl-line-mode t)
 
 ;; Use Shift-arrowkeys to move between windows
@@ -51,6 +55,10 @@
 (setq inhibit-splash-screen t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq create-lockfiles nil)
+
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ; mouse scroll one line at a time
+(setq mouse-wheel-follow-mouse 't) ; scroll the window under mouse
+(setq scroll-step 1) ; kb scroll one line at a time
 
 ;; follow symlinks (in order to use vc functionality). Not sure if this is
 ;; what I want
@@ -100,7 +108,21 @@
 
 (use-package ido
   :config
-  (ido-mode 1))
+  (ido-mode 1)
+  (ido-everywhere 1))
+
+(use-package ido-ubiquitous
+  :config
+  (ido-ubiquitous-mode 1))
+
+(use-package ido-vertical-mode
+  :config
+  (ido-vertical-mode 1))
+
+(use-package recentf
+  :config
+  (recentf-mode t)
+  (global-set-key (kbd "C-x C-r") 'recentf-open-files))
 
 (use-package smex
   :bind (("M-x" . smex)
@@ -130,8 +152,9 @@
 (use-package darktooth-theme :defer)
 (use-package creamsody-theme :defer)
 (use-package doom-themes :defer)
+(use-package apropospriate-theme :defer)
 
-(load-theme 'gruvbox t)
+(load-theme 'apropospriate-dark t)
 
 (require 'platform-specific)
 (provide 'init)
