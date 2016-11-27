@@ -146,6 +146,8 @@
 
 (use-package web-mode)
 
+(use-package rust-mode)
+
 ;;; themes
 (use-package solarized-theme :defer)
 (use-package color-theme-sanityinc-tomorrow :defer)
