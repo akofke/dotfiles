@@ -1,6 +1,6 @@
 ;;; MacOS settings
 (when (eq system-type 'darwin)
-  (set-frame-font "Source Code Pro Light 14")
+  (set-frame-font "Operator Mono Light 16")
   (setq mac-option-modifier 'meta
 	mac-command-modifier 'hyper)
   )

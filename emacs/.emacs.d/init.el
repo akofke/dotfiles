@@ -60,6 +60,8 @@
 (setq mouse-wheel-follow-mouse 't) ; scroll the window under mouse
 (setq scroll-step 1) ; kb scroll one line at a time
 
+(setq sentence-end-double-space nil)
+
 ;; follow symlinks (in order to use vc functionality). Not sure if this is
 ;; what I want
 (setq vc-follow-symlinks t)
@@ -135,6 +137,12 @@
   :config
   (which-key-mode))
 
+(use-package smartparens
+  :bind
+  (([S-tab] . sp-up-sexp))
+  :config
+  (add-hook 'prog-mode-hook #'smartparens-mode))
+
 (use-package haskell-mode)
 
 (use-package neotree
@@ -147,6 +155,8 @@
 (use-package web-mode)
 
 (use-package rust-mode)
+
+(use-package elixir-mode)
 
 ;;; themes
 (use-package solarized-theme :defer)
