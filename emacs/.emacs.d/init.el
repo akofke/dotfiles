@@ -148,7 +148,11 @@
 (use-package neotree
   :config
   (setq neo-theme 'arrow)
-  (global-set-key [f8] 'neotree-toggle))
+  (global-set-key [f8] 'neotree-toggle)
+  (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+  (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
+  (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+  (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter))
 
 (use-package org)
 
@@ -157,6 +161,8 @@
 (use-package rust-mode)
 
 (use-package elixir-mode)
+
+(use-package js2-mode)
 
 ;;; themes
 (use-package solarized-theme :defer)
@@ -168,7 +174,7 @@
 (use-package doom-themes :defer)
 (use-package apropospriate-theme :defer)
 
-(load-theme 'apropospriate-dark t)
+(load-theme 'gruvbox t)
 
 (require 'platform-specific)
 (provide 'init)
