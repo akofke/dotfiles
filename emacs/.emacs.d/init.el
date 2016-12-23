@@ -139,7 +139,8 @@
 
 (use-package smartparens
   :bind
-  (([S-tab] . sp-up-sexp))
+  (([S-tab] . sp-up-sexp)
+   ([backtab] . sp-up-sexp))
   :config
   (add-hook 'prog-mode-hook #'smartparens-mode))
 
@@ -168,7 +169,7 @@
 (use-package doom-themes :defer)
 (use-package apropospriate-theme :defer)
 
-(load-theme 'apropospriate-dark t)
+(load-theme 'gruvbox t)
 
 (require 'platform-specific)
 (provide 'init)
