@@ -23,7 +23,7 @@
 ;;; use-package setup
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'use-package))
+  (package-install'use-package))
 
 (eval-when-compile
   (require 'use-package))
@@ -81,6 +81,8 @@
 
 
 ;;; packages
+
+(electric-pair-mode 1)
 
 (use-package evil
   :config
@@ -157,13 +159,25 @@
 
 (use-package org)
 
-(use-package web-mode)
+(use-package web-mode
+  :config
+  (setq web-mode-enable-auto-pairing t)
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+  (setq web-mode-content-types-alist
+	'(("jsx" . "\\.js[x]?\\'")))
+  (add-hook 'web-mode-hook
+	    (lambda ()
+	      (if (equal web-mode-content-type "jsx")
+		  (js2-minor-mode)))))
 
 (use-package rust-mode)
 
 (use-package elixir-mode)
 
-(use-package js2-mode)
+(use-package js2-mode
+  :config
+  
+  (setq js2-highlight-level 3))
 
 ;;; themes
 (use-package solarized-theme :defer)
@@ -174,8 +188,9 @@
 (use-package creamsody-theme :defer)
 (use-package doom-themes :defer)
 (use-package apropospriate-theme :defer)
+(use-package ujelly-theme :defer)
 
-(load-theme 'gruvbox t)
+(load-theme 'dracula t)
 
 (require 'platform-specific)
 (provide 'init)
