@@ -32,6 +32,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'chrisbra/Colorizer'
 
 " Syntax/language plugins
 " Plug 'sheerun/vim-polyglot'
