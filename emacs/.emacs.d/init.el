@@ -110,18 +110,26 @@
     (setq undo-tree-visualizer-timestamps t
 	  undo-tree-visualizer-diff t)))
 
-(use-package ido
-  :config
-  (ido-mode 1)
-  (ido-everywhere 1))
+;; (use-package ido
+;;   :config
+;;   (ido-mode 1)
+;;   (ido-everywhere 1))
 
-(use-package ido-ubiquitous
-  :config
-  (ido-ubiquitous-mode 1))
+;; (use-package ido-ubiquitous
+;;   :config
+;;   (ido-ubiquitous-mode 1))
 
-(use-package ido-vertical-mode
+;; (use-package ido-vertical-mode
+;;   :config
+;;   (ido-vertical-mode 1))
+
+(use-package helm
   :config
-  (ido-vertical-mode 1))
+  (require 'helm-config)
+
+  (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (helm-autoresize-mode 1)
+  (helm-mode 1))
 
 (use-package recentf
   :config
@@ -150,7 +158,8 @@
 
 (use-package neotree
   :config
-  (setq neo-theme 'arrow)
+  (setq neo-theme 'arrow
+	neo-window-fixed-size nil)
   (global-set-key [f8] 'neotree-toggle)
   (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
   (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
@@ -189,8 +198,9 @@
 (use-package doom-themes :defer)
 (use-package apropospriate-theme :defer)
 (use-package ujelly-theme :defer)
+(use-package jbeans-theme :defer)
 
-(load-theme 'dracula t)
+(load-theme 'sanityinc-tomorrow-eighties t)
 
 (require 'platform-specific)
 (provide 'init)
