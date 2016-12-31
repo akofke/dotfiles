@@ -102,7 +102,7 @@ let g:gruvbox_contrast_dark='hard'
 " let g:gruvbox_italic=1
 " let g:gruvbox_italicize_comments=1
 " let g:gruvbox_italicize_strings=1
-colorscheme gruvbox
+colorscheme hybrid
 
 let g:hybrid_custom_term_colors = 1
 
@@ -199,9 +199,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | wincmd p |
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
 
-let g:lightline = {
-    \ 'colorscheme': 'gruvbox'
-    \ }
+" let g:lightline = {
+"     \ 'colorscheme': 'gruvbox'
+"     \ }
 
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='<M-m>'
