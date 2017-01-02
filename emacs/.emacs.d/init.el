@@ -92,6 +92,8 @@
   :config
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
 
+(use-package rainbow-mode)
+
 (use-package powerline
   :config
   (use-package powerline-evil)
@@ -128,19 +130,31 @@
   (require 'helm-config)
 
   (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (global-unset-key (kbd "C-x c"))
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "C-x b") 'helm-mini)
+
+  (setq helm-M-x-fuzzy-match t)
+
+  (when (executable-find "curl")
+    (setq helm-google-suggest-use-curl-p t))
   (helm-autoresize-mode 1)
   (helm-mode 1))
+
+(use-package company
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package recentf
   :config
   (recentf-mode t)
   (global-set-key (kbd "C-x C-r") 'recentf-open-files))
 
-(use-package smex
-  :bind (("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands))
-  :config
-  (smex-initialize))
+;; (use-package smex
+;;   :bind (("M-x" . smex)
+;; 	 ("M-X" . smex-major-mode-commands))
+;;   :config
+;;   (smex-initialize))
 
 (use-package which-key
   :diminish (which-key-mode)
@@ -189,18 +203,18 @@
   (setq js2-highlight-level 3))
 
 ;;; themes
-(use-package solarized-theme :defer)
-(use-package color-theme-sanityinc-tomorrow :defer)
 (use-package dracula-theme :defer)
-(use-package gruvbox-theme :defer)
-(use-package darktooth-theme :defer)
-(use-package creamsody-theme :defer)
-(use-package doom-themes :defer)
+(use-package gruvbox-theme)
 (use-package apropospriate-theme :defer)
-(use-package ujelly-theme :defer)
-(use-package jbeans-theme :defer)
+;; (use-package zenburn-theme
+;;   :init
+;;   (defvar zenburn-override-colors-alist
+;;     '(("zenburn-bg" . "#383838")
+;;       ("zenburn-yellow" . "#FDECBC")))
+;;   :config
+;;   (load-theme 'zenburn t))
 
-(load-theme 'sanityinc-tomorrow-eighties t)
+(load-theme 'gruvbox t)
 
 (require 'platform-specific)
 (provide 'init)
