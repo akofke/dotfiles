@@ -204,7 +204,9 @@
 
 ;;; themes
 (use-package dracula-theme :defer)
-(use-package gruvbox-theme)
+(use-package gruvbox-theme :defer)
+(use-package darktooth-theme :defer)
+
 (use-package apropospriate-theme :defer)
 ;; (use-package zenburn-theme
 ;;   :init
