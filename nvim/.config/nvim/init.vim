@@ -234,6 +234,6 @@ let g:deoplete#omni#input_patterns.tex = '\\(?:'
 let python_highlight_all = 1
 let g:tex_flavor = 'latex'
 
-let g:alchemist#elixi_erlang_src = "~/src"
+let g:alchemist#elixir_erlang_src = "~/src"
 
 " vim: foldmethod=marker
