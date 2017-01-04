@@ -126,6 +126,7 @@
 ;;   (ido-vertical-mode 1))
 
 (use-package helm
+  :diminish helm-mode
   :config
   (require 'helm-config)
 
@@ -142,6 +143,7 @@
   (helm-mode 1))
 
 (use-package company
+  :diminish company-mode
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 
@@ -203,18 +205,13 @@
   (setq js2-highlight-level 3))
 
 ;;; themes
-(use-package dracula-theme :defer)
-(use-package gruvbox-theme)
-(use-package apropospriate-theme :defer)
-;; (use-package zenburn-theme
-;;   :init
-;;   (defvar zenburn-override-colors-alist
-;;     '(("zenburn-bg" . "#383838")
-;;       ("zenburn-yellow" . "#FDECBC")))
-;;   :config
-;;   (load-theme 'zenburn t))
+(use-package dracula-theme :disabled)
+(use-package gruvbox-theme :disabled)
+(use-package apropospriate-theme :disabled)
+(use-package color-theme-sanityinc-tomorrow)
+(use-package doom-themes)
 
-(load-theme 'gruvbox t)
+(load-theme 'doom-molokai t)
 
 (require 'platform-specific)
 (provide 'init)
