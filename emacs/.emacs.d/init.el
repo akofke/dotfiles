@@ -33,8 +33,11 @@
 (setq use-package-always-ensure t)
 
 ;;; general ui settings
-(when (find-font (font-spec :name "Gohufont"))
-  (set-frame-font "GohuFont 14"))
+;; (when (find-font (font-spec :name "Gohufont"))
+;;   (set-frame-font "GohuFont 14"))
+
+(add-to-list 'default-frame-alist
+	     '(font . "Gohufont 14"))
 
 (blink-cursor-mode -1)
 
@@ -88,6 +91,9 @@
   :config
   (evil-mode 1))
 
+(use-package evil-surround
+  :config (global-evil-surround-mode 1))
+
 (use-package rainbow-delimiters
   :config
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
@@ -96,7 +102,6 @@
 
 (use-package powerline
   :config
-  (use-package powerline-evil)
   (powerline-default-theme)
   (setq powerline-default-separator 'wave))
 
@@ -210,10 +215,13 @@
 (use-package apropospriate-theme :disabled)
 (use-package color-theme-sanityinc-tomorrow)
 (use-package doom-themes)
+(use-package flatland-theme)
 
-(load-theme 'doom-molokai t)
+(load-theme 'flatland t)
 
 (require 'platform-specific)
 (provide 'init)
+
+(server-start)
 
 ;;; init.el ends here
