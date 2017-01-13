@@ -37,7 +37,7 @@
 ;;   (set-frame-font "GohuFont 14"))
 
 (add-to-list 'default-frame-alist
-	     '(font . "Gohufont 14"))
+	     '(font . "Source Code Pro 14"))
 
 (blink-cursor-mode -1)
 
@@ -62,6 +62,7 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ; mouse scroll one line at a time
 (setq mouse-wheel-follow-mouse 't) ; scroll the window under mouse
 (setq scroll-step 1) ; kb scroll one line at a time
+(setq scroll-conservatively most-positive-fixnum)
 
 (setq sentence-end-double-space nil)
 
@@ -101,10 +102,19 @@
 (use-package rainbow-mode)
 
 (use-package powerline
+  :disabled t
   :config
   (powerline-default-theme)
   (setq powerline-default-separator 'wave))
 
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (setq powerline-default-separator 'wave
+	spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (spaceline-helm-mode)
+  (spaceline-spacemacs-theme)
+  )
 
 (use-package magit)
 (use-package evil-magit)
@@ -150,7 +160,15 @@
 (use-package company
   :diminish company-mode
   :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 2)
   (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package emmet-mode
+  :defer t
+  :init
+  (add-hook 'css-mode-hook 'emmet-mode)
+  (add-hook 'web-mode-hook 'emmet-mode))
 
 (use-package recentf
   :config
@@ -190,15 +208,23 @@
 (use-package org)
 
 (use-package web-mode
+  :mode ("\\.js\\'"
+	 "\\.html\\'")
+  :init
+  (setq web-mode-enable-current-element-highlight t)
   :config
-  (setq web-mode-enable-auto-pairing t)
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
-  (setq web-mode-content-types-alist
-	'(("jsx" . "\\.js[x]?\\'")))
+  (setq web-mode-enable-auto-pairing t
+	web-mode-enable-auto-closing t
+	web-mode-enable-auto-expanding t)
+  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
   (add-hook 'web-mode-hook
 	    (lambda ()
 	      (if (equal web-mode-content-type "jsx")
-		  (js2-minor-mode)))))
+		  (js2-minor-mode))))
+  (set-face-attribute 'web-mode-html-tag-face nil :weight 'bold)
+  (set-face-attribute 'web-mode-current-element-highlight-face nil
+		      :underline t :background 'unspecified))
+
 
 (use-package rust-mode)
 
@@ -212,12 +238,15 @@
 ;;; themes
 (use-package dracula-theme :disabled)
 (use-package gruvbox-theme :disabled)
-(use-package apropospriate-theme :disabled)
+(use-package apropospriate-theme
+  :config
+  (setq apropospriate-mode-line-height 1.0))
 (use-package color-theme-sanityinc-tomorrow)
 (use-package doom-themes)
 (use-package flatland-theme)
 
-(load-theme 'flatland t)
+(load-theme 'sanityinc-tomorrow-night)
+(set-face-attribute 'mode-line nil :box nil)
 
 (require 'platform-specific)
 (provide 'init)

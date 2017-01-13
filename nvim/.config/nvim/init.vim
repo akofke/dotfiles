@@ -41,6 +41,7 @@ Plug 'othree/yajs.vim'
 Plug 'lervag/vimtex'
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
+Plug 'rust-lang/rust.vim'
 
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'ervandew/supertab'
@@ -102,7 +103,7 @@ let g:gruvbox_contrast_dark='hard'
 " let g:gruvbox_italic=1
 " let g:gruvbox_italicize_comments=1
 " let g:gruvbox_italicize_strings=1
-colorscheme hybrid
+colorscheme jellybeans
 
 let g:hybrid_custom_term_colors = 1
 
