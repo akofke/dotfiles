@@ -235,6 +235,8 @@
   
   (setq js2-highlight-level 3))
 
+(use-package groovy-mode)
+
 ;;; themes
 (use-package dracula-theme :disabled)
 (use-package gruvbox-theme :disabled)
