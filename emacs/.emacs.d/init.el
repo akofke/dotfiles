@@ -223,7 +223,8 @@
 		  (js2-minor-mode))))
   (set-face-attribute 'web-mode-html-tag-face nil :weight 'bold)
   (set-face-attribute 'web-mode-current-element-highlight-face nil
-		      :underline t :background 'unspecified))
+		      :underline t :background 'unspecified)
+  (set-face-attribute 'web-mode-html-attr-name-face nil :slant 'italic))
 
 
 (use-package rust-mode)
@@ -234,8 +235,6 @@
   :config
   
   (setq js2-highlight-level 3))
-
-(use-package groovy-mode)
 
 ;;; themes
 (use-package dracula-theme :disabled)
@@ -249,6 +248,7 @@
 
 (load-theme 'sanityinc-tomorrow-night)
 (set-face-attribute 'mode-line nil :box nil)
+(set-face-attribute 'mode-line-inactive nil :box)
 
 (require 'platform-specific)
 (provide 'init)
