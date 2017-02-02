@@ -75,10 +75,15 @@ set foldcolumn=2
 set foldnestmax=2
 autocmd BufEnter * normal zR
 
+autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
+set title
+
 augroup reload_vimrc
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup end
+
+
 
 
 "}}}
@@ -103,7 +108,7 @@ let g:gruvbox_contrast_dark='hard'
 " let g:gruvbox_italic=1
 " let g:gruvbox_italicize_comments=1
 " let g:gruvbox_italicize_strings=1
-colorscheme jellybeans
+colorscheme hybrid
 
 let g:hybrid_custom_term_colors = 1
 

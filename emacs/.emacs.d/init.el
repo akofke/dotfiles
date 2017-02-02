@@ -37,7 +37,7 @@
 ;;   (set-frame-font "GohuFont 14"))
 
 (add-to-list 'default-frame-alist
-	     '(font . "Source Code Pro 14"))
+	     '(font . "Fira Code 14"))
 
 (blink-cursor-mode -1)
 
@@ -209,7 +209,8 @@
 
 (use-package web-mode
   :mode ("\\.js\\'"
-	 "\\.html\\'")
+	 "\\.html\\'"
+	 "\\.html.*\\'")
   :init
   (setq web-mode-enable-current-element-highlight t)
   :config
@@ -234,6 +235,8 @@
   :config
   
   (setq js2-highlight-level 3))
+
+(use-package json-mode)
 
 (use-package groovy-mode)
 
